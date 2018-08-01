@@ -18,6 +18,7 @@ xiaolu机器人功能需求：
 from multiprocessing import Process
 from xiaolu import dd #控制通道  进程间数据共享
 import affinity
+from xiaolu import wheel
 
 if __name__ == "__main__":
     p1 = Process(target=wheel.standby,args=(dd,),name='wheel')

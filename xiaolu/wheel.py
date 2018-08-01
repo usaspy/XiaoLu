@@ -17,7 +17,7 @@ in1 =29
 in2 = 31
 in3 =33
 in4 = 35
-enda = 40
+#enda = 40
 endb = 37
 
 def fire():
@@ -25,17 +25,17 @@ def fire():
     GPIO.setup(in2,GPIO.OUT,initial=GPIO.LOW)
     GPIO.setup(in3,GPIO.OUT,initial=GPIO.LOW)
     GPIO.setup(in4,GPIO.OUT,initial=GPIO.LOW)
-    GPIO.setup(enda,GPIO.OUT,initial=GPIO.HIGH)
+   # GPIO.setup(enda,GPIO.OUT,initial=GPIO.HIGH)
     GPIO.setup(endb,GPIO.OUT,initial=GPIO.HIGH)
 
 def misfire():
-    GPIO.cleanup([in1, in2, in3, in4, enda, endb])
+    GPIO.cleanup([in1, in2, in3, in4, endb])
 
-def __left_forward():
+def __left_backaway():
     GPIO.output(in1,GPIO.HIGH)
     GPIO.output(in2,GPIO.LOW)
 
-def __left_backaway():
+def __left_forward():
     GPIO.output(in1,GPIO.LOW)
     GPIO.output(in2,GPIO.HIGH)
 
@@ -43,11 +43,11 @@ def __left_stop():
     GPIO.output(in1,GPIO.LOW)
     GPIO.output(in2,GPIO.LOW)
 
-def __right_forward():
+def __right_backaway():
     GPIO.output(in3,GPIO.HIGH)
     GPIO.output(in4,GPIO.LOW)
 
-def __right_backaway():
+def __right_forward():
     GPIO.output(in3,GPIO.LOW)
     GPIO.output(in4,GPIO.HIGH)
 
@@ -74,3 +74,10 @@ def turn_right():
 def stop():
     __left_stop()
     __right_stop()
+
+
+def standby(dd):
+    fire()
+    stop()
+    time.sleep(3)
+    misfire()
