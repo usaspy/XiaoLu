@@ -26,7 +26,6 @@ if __name__ == "__main__":
         p1 = Process(target=wheel.standby,args=(dd,),name='wheel')
         p2 = Process(target=infrared.scan,args=(dd,),name='infrared')
 
-
         p1.daemon = True
         p2.daemon = True
 
@@ -38,6 +37,8 @@ if __name__ == "__main__":
 
         p1.join()
         p2.join()
+
+        print("系统就绪...等待用户指令")
     except Exception as e:
         print(e)
     finally:
