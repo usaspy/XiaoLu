@@ -41,7 +41,7 @@ def scan(dd):
     GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
     GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
     while True:
-        print(a_pin,b_pin,c_pin,d_pin)
+        print(a_scan,b_scan,c_scan,d_scan)
         time.sleep(10)
 
 
