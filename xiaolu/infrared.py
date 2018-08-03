@@ -25,6 +25,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup([a_pin,b_pin,c_pin,d_pin],GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
 def edge_change(pin):
+    global  a_scan,b_scan,c_scan,d_scan
     if pin == a_pin:
         a_scan = GPIO.input(pin)
     if pin == b_pin:
