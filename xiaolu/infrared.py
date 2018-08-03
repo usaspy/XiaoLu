@@ -35,6 +35,7 @@ def edge_change(pin):
     if pin == d_pin:
         d_scan = GPIO.input(pin)
 
+    print(a_scan, b_scan, c_scan, d_scan)
 #启动红外避障系统，实时刷新环境状态
 def scan(dd):
     GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
@@ -42,7 +43,6 @@ def scan(dd):
     GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
     GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
     while True:
-        print(a_scan,b_scan,c_scan,d_scan)
         time.sleep(10)
 
 
