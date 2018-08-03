@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 # coding=utf-8
-#红外避障系统
 '''
-
-
+红外避障系统
+1.启动扫描，当探测到障碍时，将X_scan设置为0,没有障碍时设置为1
+2. a,b,c,d分别代表从左向右数第一、二、三、四个探头
 '''
 
 import RPi.GPIO as GPIO
@@ -15,7 +15,7 @@ b_scan = 1
 c_scan = 1
 d_scan = 1
 
-#a,b,c,d分别对应4个传感器的输出脚
+#对应4个传感器的输出脚
 a_pin = 32
 b_pin = 36
 c_pin = 38
@@ -36,14 +36,17 @@ def edge_change(pin):
         d_scan = GPIO.input(pin)
 
     print(a_scan, b_scan, c_scan, d_scan)
+
 #启动红外避障系统，实时刷新环境状态
+#四个监听器，实时报告该方向是否有障碍
 def scan(dd):
-    GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(b_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
+    GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change,bouncetime=20)
+    GPIO.add_event_detect(b_pin,GPIO.BOTH,callback=edge_change,bouncetime=20)
+    GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=20)
+    GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=20)
     while True:
-        time.sleep(10)
+        time.sleep(1)
+
 
 
 def stopWork():

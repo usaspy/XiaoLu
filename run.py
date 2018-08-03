@@ -22,20 +22,23 @@ from xiaolu import wheel
 from xiaolu import infrared
 
 if __name__ == "__main__":
-    p1 = Process(target=wheel.standby,args=(dd,),name='wheel')
-    p2 = Process(target=infrared.scan,args=(dd,),name='infrared')
+    try:
+        p1 = Process(target=wheel.standby,args=(dd,),name='wheel')
+        p2 = Process(target=infrared.scan,args=(dd,),name='infrared')
 
 
-    p1.daemon = True
-    p2.daemon = True
+        p1.daemon = True
+        p2.daemon = True
 
-    p1.start()
-    p2.start()
+        p1.start()
+        p2.start()
 
- #   affinity.set_process_affinity_mask(p1.pid,7L)
- #   affinity.set_process_affinity_mask(p2.pid,7L)
+     #   affinity.set_process_affinity_mask(p1.pid,7L)
+     #   affinity.set_process_affinity_mask(p2.pid,7L)
 
-    p1.join()
-    p2.join()
-
-    print("系统停机...")
+        p1.join()
+        p2.join()
+    except Exception as e:
+        print(e)
+    finally:
+        print("系统停机...")
