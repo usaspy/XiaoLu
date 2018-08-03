@@ -29,7 +29,7 @@ GPIO.setup([a_pin,b_pin,c_pin,d_pin],GPIO.IN,pull_up_down=GPIO.PUD_UP)
 def a_change(a_pin):
     print("1111")
 #
-def scan():
+def scan(dd):
     GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=a_change)
     print("stooo")
 

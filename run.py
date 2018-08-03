@@ -17,7 +17,7 @@ xiaolu机器人功能需求：
 # 主进程
 from multiprocessing import Process
 from xiaolu import dd #控制通道  进程间数据共享
-import affinity
+#import affinity
 from xiaolu import wheel
 from xiaolu import infrared
 
@@ -32,8 +32,8 @@ if __name__ == "__main__":
     p1.start()
     p2.start()
 
-    affinity.set_process_affinity_mask(p1.pid,7L)
-    affinity.set_process_affinity_mask(p2.pid,7L)
+ #   affinity.set_process_affinity_mask(p1.pid,7L)
+ #   affinity.set_process_affinity_mask(p2.pid,7L)
 
     p1.join()
     p2.join()
