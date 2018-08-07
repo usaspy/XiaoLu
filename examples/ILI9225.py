@@ -158,7 +158,7 @@ class ILI9225(object):
 
     def data(self, data):
         """Write a byte or array of bytes to the display as display data."""
-        return self.send(data, True)
+        return self.send(data, True) #12321
 
     def reset(self):
         """Reset the display, if reset pin is connected."""
@@ -175,25 +175,25 @@ class ILI9225(object):
         # be overridden by other displays in the future.
 
         # set SS bit and direction output from S528 to S1
-        self.command(ILI9225_POWER_CTRL1).data([0x00, 0x00]) # set SAP,DSTB,STB
-        self.command(ILI9225_POWER_CTRL2).data([0x00, 0x00]) # set APON,PON,AON,VCI1EN,VC
-        self.command(ILI9225_POWER_CTRL3).data([0x00, 0x00]) # set BT,DC1,DC2,DC3
-        self.command(ILI9225_POWER_CTRL4).data([0x00, 0x00]) # set GVDD
-        self.command(ILI9225_POWER_CTRL5).data([0x00, 0x00]) # set VCOMH/VCOML voltage
+        self.command(ILI9225_POWER_CTRL1).data([0x00, 0x00])    # set SAP,DSTB,STB
+        self.command(ILI9225_POWER_CTRL2).data([0x00, 0x00])    # set APON,PON,AON,VCI1EN,VC
+        self.command(ILI9225_POWER_CTRL3).data([0x00, 0x00])    # set BT,DC1,DC2,DC3
+        self.command(ILI9225_POWER_CTRL4).data([0x00, 0x00])    # set GVDD
+        self.command(ILI9225_POWER_CTRL5).data([0x00, 0x00])    # set VCOMH/VCOML voltage
         time.sleep(0.04)
 
         # power-on sequence
-        self.command(ILI9225_POWER_CTRL2).data([0x00, 0x18]) # set APON, PON, AON, VCI1EN, VC
-        self.command(ILI9225_POWER_CTRL3).data([0x61, 0x21]) # set BT, DC1, DC2, DC3
-        self.command(ILI9225_POWER_CTRL4).data([0x00, 0x6F]) # set GVDD   /*007F 0088 */
-        self.command(ILI9225_POWER_CTRL5).data([0x49, 0x5F]) # set VCOMH/VCOML voltage
-        self.command(ILI9225_POWER_CTRL1).data([0x08, 0x00]) # set SAP, DSTB, STB
+        self.command(ILI9225_POWER_CTRL2).data([0x00, 0x18])# set APON, PON, AON, VCI1EN, VC
+        self.command(ILI9225_POWER_CTRL3).data([0x61, 0x21])# set BT, DC1, DC2, DC3
+        self.command(ILI9225_POWER_CTRL4).data([0x00, 0x6F])# set GVDD   /*007F 0088 */
+        self.command(ILI9225_POWER_CTRL5).data([0x49, 0x5F])# set VCOMH/VCOML voltage
+        self.command(ILI9225_POWER_CTRL1).data([0x08, 0x00])# set SAP, DSTB, STB
         time.sleep(0.01)
-        self.command(ILI9225_POWER_CTRL2).data([0x10, 0x3B]) # set APON, PON, AON, VCI1EN, VC
+        self.command(ILI9225_POWER_CTRL2).data([0x10, 0x3B])    # set APON, PON, AON, VCI1EN, VC
         time.sleep(0.05)
 
         self.command(ILI9225_DRIVER_OUTPUT_CTRL).data([0x01, 0x1C])  # set the display line number and display direction
-        self.command(ILI9225_LCD_AC_DRIVING_CTRL).data([0x01, 0x00]) # set 1 line inversion
+        self.command(ILI9225_LCD_AC_DRIVING_CTRL).data([0x01, 0x00])# set 1 line inversion
         self.command(ILI9225_ENTRY_MODE).data([0x10, 0x30])          # set GRAM write direction and BGR=1.
         self.command(ILI9225_DISP_CTRL1).data([0x00, 0x00])          # Display off
         self.command(ILI9225_BLANK_PERIOD_CTRL1).data([0x08, 0x08]) # set the back porch and front porch
