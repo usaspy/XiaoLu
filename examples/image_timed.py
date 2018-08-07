@@ -20,7 +20,7 @@
 # THE SOFTWARE.
 from PIL import Image
 import time
-import BHack_ILI9225 as TFT
+import ILI9225 as TFT
 import Adafruit_GPIO as GPIO
 import Adafruit_GPIO.SPI as SPI
 
