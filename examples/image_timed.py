@@ -20,14 +20,14 @@
 # THE SOFTWARE.
 from PIL import Image
 import time
-import ILI9225 as TFT
+import BHack_ILI9225 as TFT
 import Adafruit_GPIO as GPIO
 import Adafruit_GPIO.SPI as SPI
 
 
 # Raspberry Pi configuration.
-RS = 27
-RST = 17
+RS = 18
+RST = 23
 SPI_PORT = 0
 SPI_DEVICE = 0
 
