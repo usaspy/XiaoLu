@@ -16,15 +16,15 @@ xiaolu机器人功能需求：
 '''
 # 主进程
 from multiprocessing import Process
-from xiaolu import dd #控制通道  进程间数据共享
+from xiaolu import _1553b #数据总线  进程间数据共享
 #import affinity
 from xiaolu import wheel
 from xiaolu import infrared
 
 if __name__ == "__main__":
     try:
-        p1 = Process(target=wheel.standby,args=(dd,),name='wheel')
-        p2 = Process(target=infrared.scan,args=(dd,),name='infrared')
+        p1 = Process(target=wheel.standby,args=(_1553b,),name='wheel')
+        p2 = Process(target=infrared.scan,args=(_1553b,),name='infrared')
 
         p1.daemon = True
         p2.daemon = True

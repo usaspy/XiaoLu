@@ -39,7 +39,7 @@ def edge_change(pin):
 
 #启动红外避障系统，实时刷新环境状态
 #四个监听器，实时报告该方向是否有障碍
-def scan(dd):
+def scan(_1553b):
     GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
     GPIO.add_event_detect(b_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
     GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
@@ -47,6 +47,7 @@ def scan(dd):
     while True:
         time.sleep(1)
 
+        _1553b[time.time()] = {}
 
 def stopWork():
     GPIO.cleanup([a_pin,b_pin,c_pin,d_pin])
