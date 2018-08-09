@@ -40,6 +40,7 @@ def edge_change(pin):
 
 #往1553B数据总线发送数据
 def __1553b_set(_1553b,a_scan, b_scan, c_scan, d_scan):
+    data = {}
     data['send'] = 0x02
     data['to'] = 0x01
     data['mode'] = 1
@@ -68,7 +69,6 @@ def scan(_1553b):
     GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
     while True:
         time.sleep(1)
-        print(_1553b)
 
 def stopWork():
     GPIO.cleanup([a_pin,b_pin,c_pin,d_pin])

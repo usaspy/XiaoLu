@@ -76,8 +76,7 @@ def stop():
     __right_stop()
 
 
-def standby(dd):
-    fire()
-    stop()
-    time.sleep(3)
-    misfire()
+def standby(_1553b):
+    while True:
+        print("----------------")
+        print(_1553b)
