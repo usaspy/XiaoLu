@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../BHack_Python_ILI9225/.idea/BHack_Python_ILI9225.iml" filepath="$PROJECT_DIR$/../BHack_Python_ILI9225/.idea/BHack_Python_ILI9225.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/XiaoLu.iml" filepath="$PROJECT_DIR$/.idea/XiaoLu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../demo-python-project/.idea/demo-python-project.iml" filepath="$PROJECT_DIR$/../demo-python-project/.idea/demo-python-project.iml" />
     </modules>
   </component>
 </project>
