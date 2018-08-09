@@ -10,9 +10,19 @@ def x():
 
 def y():
     global  b
+    global  a
+    a.append(2)
     print(b)
     b ='aaaaa'
 
+
+def var(_1553b):
+        global  a
+        a = _1553b
+        y()
+        print(_1553b)
+        def x():
+            a.append(34)
+        print(a)
 if __name__ == "__main__":
-    test()
-    x()
+    var([123,456])
