@@ -21,9 +21,6 @@ m = Manager()
 _1553b = m.dict()
 
 #定义各个子系统的系统ID
-WHEEL_ID = 0x01
-INFRARED_ID = 0x02
-TFTLCD_ID = 0x04
-
-#行走机构、扫地机构激活标志,
-Runing= False
+WHEEL_SYS = 0x01
+INFRARED_SYS = 0x02
+TFTLCD_SYS = 0x04

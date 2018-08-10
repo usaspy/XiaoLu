@@ -9,7 +9,6 @@
 '''
 import time
 import RPi.GPIO as GPIO
-from xiaolu import Runing
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -77,21 +76,124 @@ def __stop():
     __right_stop()
 
 def action_1111():
+    print("1111")
     __forward()
 
 def action_1110():
+    print('1110')
+    __turn_left()
+    time.sleep(0.5)
+    __forward()
+
+def action_1100():
+    print('1100')
+    __turn_left()
+    time.sleep(1)
+    __forward()
+
+def action_1000():
+    print('1000')
+    __turn_left()
+    time.sleep(1.5)
+    __forward()
+
+def action_0001():
+    print('0001')
+    __turn_right()
+    time.sleep(1.5)
+    __forward()
+
+def action_0011():
+    print('0011')
+    __turn_right()
+    time.sleep(1)
+    __forward()
+
+def action_0111():
+    print('0111')
+    __turn_right()
+    time.sleep(0.5)
+    __forward()
+
+def action_0010():
+    print('0010')
+    __turn_right()
+    time.sleep(2)
+    __forward()
+
+def action_0110():
+    print('0110')
+    __turn_right()
+    time.sleep(2)
+    __forward()
+
+def action_0101():
+    print('0101')
+    __turn_right()
+    time.sleep(1.5)
+    __forward()
+
+def action_1101():
+    print('1101')
+    __turn_left()
+    time.sleep(1.5)
+    __forward()
+
+def action_0100():
+    print('0100')
+    __turn_left()
+    time.sleep(2)
+    __forward()
+
+def action_0000():
+    print('0000')
+    __backaway()
+    time.sleep(0.5)
+    __turn_left()
+    time.sleep(2)
     __forward()
 
 def standby(_1553b):
     while True:
-        if not Runing:
+        if _1553b.get('STATUS') != True:
             time.sleep(3)
             continue
         else:
             fire()
             try:
                 if '0x02_0x01' in _1553b:
-                    print(_1553b['0x02_0x01'].get('data'))
+                    data = _1553b['0x02_0x01'].get('data')
+                    if data == [1,1,1,0]:
+                        action_1110()
+                    elif data == [1,1,0,0]:
+                        action_1100()
+                    elif data == [1,0,0,0]:
+                        action_1000()
+                    elif data == [0,0,0,1]:
+                        action_0001()
+                    elif data == [0,0,1,1]:
+                        action_0011()
+                    elif data == [0,1,1,1]:
+                        action_0111()
+                    elif data == [0,0,1,0]:
+                        action_0010()
+                    elif data == [0,1,1,0]:
+                        action_0110()
+                    elif data == [0,1,0,1]:
+                        action_0101()
+                    elif data == [1,1,0,1]:
+                        action_1101()
+                    elif data == [0,1,1,0]:
+                        action_0110()
+                    elif data == [0,1,0,0]:
+                        action_0100()
+                    elif data == [0,0,0,0]:
+                        action_0000()
+                    elif data == [1,1,1,1]:
+                        action_1111()
+                    else:
+                        print("whats happen????")
+
                 else:
                     action_1111()
                 time.sleep(0.7)
