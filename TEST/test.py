@@ -26,3 +26,8 @@ def var(_1553b):
         print(a)
 if __name__ == "__main__":
     var([123,456])
+    a = 0x01
+    b = 0x02
+    z = {}
+    z[str(a)+'_'+str(b)] = "2313213"
+    print(z)
