@@ -6,8 +6,10 @@
 3.用户按停止按钮，系统进入开机待运行状态，此时，屏幕回到1.
 '''
 
-from PIL import Image,ImageDraw,ImageFont
 import time
 import BHack_ILI9225 as TFT
-import Adafruit_GPIO as GPIO
-import Adafruit_GPIO.SPI as SPI
+import xiaolu
+
+def display():
+    time.sleep(20)
+    xiaolu.Runing = True

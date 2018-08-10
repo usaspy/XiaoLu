@@ -89,10 +89,9 @@ def standby(_1553b):
             continue
         else:
             fire()
-            print(_1553b)
             try:
                 if '0x02_0x01' in _1553b:
-                    print(_1553b['0x02_0x01'].get('datas'))
+                    print(_1553b['0x02_0x01'].get('data'))
                 else:
                     action_1111()
                 time.sleep(0.7)
