@@ -77,6 +77,15 @@ def stop():
 
 
 def standby(_1553b):
+    while not Runing:
+        time.sleep(3)
+        continue
+    fire()
     while True:
-        print("----------------")
         print(_1553b)
+        try:
+            if '0x02_0x01' in _1553b:
+                print(_1553b['0x02_0x01'].get('data'))
+            time.sleep(0.7)
+        except Exception as e:
+            continue

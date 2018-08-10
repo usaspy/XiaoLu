@@ -62,13 +62,13 @@ def __1553b_set(_1553b,a_scan, b_scan, c_scan, d_scan):
 #四个监听器，实时报告该方向是否有障碍
 def scan(_1553b):
     global tmp
-    tmp = _1553b
+    tmp = _1553b # 对象是传引用，基本类型是传值，此处是传引用
     GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
     GPIO.add_event_detect(b_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
     GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
     GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=50)
     while True:
-        time.sleep(1)
+        time.sleep(2)
 
 def stopWork():
     GPIO.cleanup([a_pin,b_pin,c_pin,d_pin])

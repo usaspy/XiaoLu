@@ -25,3 +25,5 @@ WHEEL_ID = 0x01
 INFRARED_ID = 0x02
 TFTLCD_ID = 0x04
 
+#行走机构、扫地机构激活标志,
+Runing= False
