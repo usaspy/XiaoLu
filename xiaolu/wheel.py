@@ -55,37 +55,44 @@ def __right_stop():
     GPIO.output(in3,GPIO.LOW)
     GPIO.output(in4,GPIO.LOW)
 
-def forward():
+def __forward():
     __left_forward()
     __right_forward()
 
-def backaway():
+def __backaway():
     __left_backaway()
     __right_backaway()
 
-def turn_left():
+def __turn_left():
     __left_backaway()
     __right_forward()
 
-def turn_right():
+def __turn_right():
     __left_forward()
     __right_backaway()
 
-def stop():
+def __stop():
     __left_stop()
     __right_stop()
 
+def action_1111():
+    __forward()
+
+def action_1110():
+    __forward()
 
 def standby(_1553b):
-    while not Runing:
-        time.sleep(3)
-        continue
-    fire()
     while True:
-        print(_1553b)
-        try:
-            if '0x02_0x01' in _1553b:
-                print(_1553b['0x02_0x01'].get('data'))
-            time.sleep(0.7)
-        except Exception as e:
+        if not Runing:
+            time.sleep(3)
             continue
+        else:
+            fire()
+            try:
+                if '0x02_0x01' in _1553b:
+                    print(_1553b['0x02_0x01'].get('datas'))
+                else:
+                    action_1111()
+                time.sleep(0.7)
+            except Exception as e:
+                continue
