@@ -58,12 +58,13 @@ def display(_1553b):
         # draw format
         draw.line([(40, 0), (40, 220)], fill=(255, 255, 255), width=1)
         draw.line([(40, 60), (176, 60)], fill=(255, 255, 255), width=1)
+        __draw_rotated_text(disp.buffer, 'Hello, I am Xiao Lu', (10, 20), 90, font, fill=(255,255,255))
         if '0x02_0x04' in _1553b and _1553b['0x02_0x04'].get('data') is not None:
-            print(_1553b['0x02_0x04'].get('data'))
-            __draw_rotated_text(disp.buffer, 'A:' + _1553b['0x02_0x04'].get('data')[0], (10, 20), 90, font, fill=(255, 255, 255))
-            __draw_rotated_text(disp.buffer, 'B:' + _1553b['0x02_0x04'].get('data')[1], (10, 40), 90, font, fill=(255, 255, 255))
-            __draw_rotated_text(disp.buffer, 'C:' + _1553b['0x02_0x04'].get('data')[2], (10, 60), 90, font, fill=(255, 255, 255))
-            __draw_rotated_text(disp.buffer, 'D:' + _1553b['0x02_0x04'].get('data')[3], (10, 80), 90, font, fill=(255, 255, 255))
+            print(_1553b['0x02_0x04'].get('data')[1])
+            __draw_rotated_text(disp.buffer, 'A:' + _1553b['0x02_0x04'].get('data')[0], (110, 210), 90, font, fill=(255, 255, 255))
+            __draw_rotated_text(disp.buffer, 'B:' + _1553b['0x02_0x04'].get('data')[1], (110, 170), 90, font, fill=(255, 255, 255))
+            __draw_rotated_text(disp.buffer, 'C:' + _1553b['0x02_0x04'].get('data')[2], (110, 130), 90, font, fill=(255, 255, 255))
+            __draw_rotated_text(disp.buffer, 'D:' + _1553b['0x02_0x04'].get('data')[3], (110, 90), 90, font, fill=(255, 255, 255))
         __draw_rotated_text(disp.buffer, ">> " + time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()), (60, 80), 90, font,
                           fill=(255, 255, 255))
         __draw_rotated_text(disp.buffer, ">> " + 'Runing', (80, 80), 90, font, fill=(0, 255, 0))
