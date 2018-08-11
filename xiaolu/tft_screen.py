@@ -6,10 +6,60 @@
 3.用户按停止按钮，系统进入开机待运行状态，此时，屏幕回到1.
 '''
 
+from PIL import Image,ImageDraw,ImageFont
 import time
 import BHack_ILI9225 as TFT
-import xiaolu
+import Adafruit_GPIO as GPIO
+import Adafruit_GPIO.SPI as SPI
 
-def display():
-    time.sleep(20)
-    xiaolu.Runing = True
+# Raspberry Pi configuration.
+RS = 27
+RST = 17
+SPI_PORT = 0
+SPI_DEVICE = 0
+
+# Create TFT LCD display class.
+disp = TFT.ILI9225(RS, rst=RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=64000000))
+
+# Initialize display.
+disp.begin()
+
+# Load an image.
+print('Loading image...')
+image = Image.open('background.png')
+image = image.rotate(90).resize((176, 220))
+disp.display(image)
+time.sleep(5)
+
+draw = disp.draw()
+
+# Load default font.
+font = ImageFont.load_default()
+
+def __draw_rotated_text(image, text, position, angle, font, fill=(255,255,255)):
+	# Get rendered font width and height.
+	draw = ImageDraw.Draw(image)
+	width, height = draw.textsize(text, font=font)
+	# Create a new image with transparent background to store the text.
+	textimage = Image.new('RGBA', (width, height), (0,0,0,0))
+	# Render the text.
+	textdraw = ImageDraw.Draw(textimage)
+	textdraw.text((0,0), text, font=font, fill=fill)
+	# Rotate the text image.
+	rotated = textimage.rotate(angle, expand=1)
+	# Paste the text into the image, using it as a mask for transparency.
+	image.paste(rotated, position, rotated)
+
+#draw format
+draw.line([(40, 0), (40, 220)], fill=(255, 255, 255), width=1)
+draw.line([(40, 60), (176, 60)], fill=(255, 255, 255), width=1)
+
+def display(_1553b):
+    while True:
+        __draw_rotated_text(disp.buffer, 'Hello, I am Xiao Lu', (10, 20), 90, font, fill=(255, 255, 255))
+        __draw_rotated_text(disp.buffer, ">> " + time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()), (60, 80), 90, font,
+                          fill=(255, 255, 255))
+        __draw_rotated_text(disp.buffer, ">> " + 'Runing', (80, 80), 90, font, fill=(0, 255, 0))
+        disp.display()
+        time.sleep(1)
+        disp.clear((0, 0, 0))
