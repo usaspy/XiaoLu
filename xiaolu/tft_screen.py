@@ -20,6 +20,7 @@ RST = 17
 SPI_PORT = 0
 SPI_DEVICE = 0
 
+sec = 0
 # Create TFT LCD display class.
 disp = TFT.ILI9225(RS, rst=RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=64000000))
 
@@ -59,17 +60,18 @@ def display(_1553b):
         draw.line([(40, 0), (40, 220)], fill=(255, 255, 255), width=1)
         draw.line([(40, 60), (176, 60)], fill=(255, 255, 255), width=1)
         __draw_rotated_text(disp.buffer, 'Hello, I am Xiao Lu', (10, 20), 90, font, fill=(255,255,255))
-        __draw_rotated_text(disp.buffer, 'Infrared>>', (80, 200), 90, font, fill=(255, 255, 255))
-        __draw_rotated_text(disp.buffer, ">> " + time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()), (60, 80), 90, font,
+        __draw_rotated_text(disp.buffer, 'Infrared >> ', (80, 200), 90, font, fill=(255, 255, 255))
+        __draw_rotated_text(disp.buffer, "Currtime >> " + time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()), (60, 80), 90, font,
                           fill=(255, 255, 255))
-        if '0x02_0x04' in _1553b and _1553b['0x02_0x04'].get('data') is not None:
-            __draw_rotated_text(disp.buffer, 'A:' + str(_1553b['0x02_0x04'].get('data')[0]), (100, 200), 90, font, fill=(255, 255, 255))
-            __draw_rotated_text(disp.buffer, 'B:' + str(_1553b['0x02_0x04'].get('data')[1]), (100, 160), 90, font, fill=(255, 255, 255))
-            __draw_rotated_text(disp.buffer, 'C:' + str(_1553b['0x02_0x04'].get('data')[2]), (100, 120), 90, font, fill=(255, 255, 255))
-            __draw_rotated_text(disp.buffer, 'D:' + str(_1553b['0x02_0x04'].get('data')[3]), (100, 80), 90, font, fill=(255, 255, 255))
-        if '0x02_0x04' in _1553b and _1553b['0x02_0x04'].get('data') is not None:
-            __draw_rotated_text(disp.buffer, 'STATUS: Runing', (160, 200), 90, font, fill=(255, 255, 0))
-            __draw_rotated_text(disp.buffer, str('1'), (140, 200), 90, font, fill=(255, 255, 0))
-        __draw_rotated_text(disp.buffer, ">> " + 'Runing', (80, 80), 90, font, fill=(0, 255, 0))
+        if 1==1 :
+            sec = sec + 1
+            if '0x02_0x04' in _1553b and _1553b['0x02_0x04'].get('data') is not None:
+                __draw_rotated_text(disp.buffer, 'A:' + str(_1553b['0x02_0x04'].get('data')[0]), (100, 195), 90, font, fill=(255, 255, 255))
+                __draw_rotated_text(disp.buffer, 'B:' + str(_1553b['0x02_0x04'].get('data')[1]), (100, 155), 90, font, fill=(255, 255, 255))
+                __draw_rotated_text(disp.buffer, 'C:' + str(_1553b['0x02_0x04'].get('data')[2]), (100, 115), 90, font, fill=(255, 255, 255))
+                __draw_rotated_text(disp.buffer, 'D:' + str(_1553b['0x02_0x04'].get('data')[3]), (100, 75), 90, font, fill=(255, 255, 255))
+            if '0x02_0x04' in _1553b and _1553b['0x02_0x04'].get('data') is not None:
+                __draw_rotated_text(disp.buffer, 'STATUS >> Runing', (160, 175), 90, font, fill=(255, 255, 0))
+                __draw_rotated_text(disp.buffer, "Runtime >> " + str(sec) + " sec", (150, 200), 90, font, fill=(255, 255, 0))
         disp.display()
         time.sleep(1)
