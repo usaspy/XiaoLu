@@ -28,7 +28,7 @@ disp.begin()
 
 # Load an image.
 print('Loading image...')
-image = Image.open('background.png')
+image = Image.open('/home/pi/app/XiaoLu/file/background.png')
 image = image.rotate(90).resize((176, 220))
 disp.display(image)
 time.sleep(5)
