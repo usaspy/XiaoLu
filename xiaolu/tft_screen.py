@@ -20,7 +20,6 @@ RST = 17
 SPI_PORT = 0
 SPI_DEVICE = 0
 
-sec = 0
 # Create TFT LCD display class.
 disp = TFT.ILI9225(RS, rst=RST, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=64000000))
 
@@ -54,8 +53,9 @@ def __draw_rotated_text(image, text, position, angle, font, fill=(255,255,255)):
 	image.paste(rotated, position, rotated)
 
 def display(_1553b):
+    sec = 0
     while True:
-        disp.clear((0, 255, 0))
+        disp.clear((0, 0, 0))
         # draw format
         draw.line([(40, 0), (40, 220)], fill=(255, 255, 255), width=1)
         draw.line([(40, 60), (176, 60)], fill=(255, 255, 255), width=1)
@@ -71,7 +71,7 @@ def display(_1553b):
                 __draw_rotated_text(disp.buffer, 'C:' + str(_1553b['0x02_0x04'].get('data')[2]), (100, 115), 90, font, fill=(255, 255, 255))
                 __draw_rotated_text(disp.buffer, 'D:' + str(_1553b['0x02_0x04'].get('data')[3]), (100, 75), 90, font, fill=(255, 255, 255))
             if '0x02_0x04' in _1553b and _1553b['0x02_0x04'].get('data') is not None:
-                __draw_rotated_text(disp.buffer, 'STATUS >> Runing', (160, 175), 90, font, fill=(255, 255, 0))
-                __draw_rotated_text(disp.buffer, "Runtime >> " + str(sec) + " sec", (150, 200), 90, font, fill=(255, 255, 0))
+                __draw_rotated_text(disp.buffer, 'Status >> Runing', (160, 145), 90, font, fill=(255, 255, 0))
+                __draw_rotated_text(disp.buffer, "Runtime >> " + str(sec) + " sec", (150, 145), 90, font, fill=(255, 255, 0))
         disp.display()
         time.sleep(1)
