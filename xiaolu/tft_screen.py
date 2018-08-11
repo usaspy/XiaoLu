@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# coding=utf-8
 '''
 扫地机显示系统
 功能：

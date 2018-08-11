@@ -10,15 +10,24 @@
 import time
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-in1 =29
-in2 = 31
-in3 =33
-in4 = 35
+#BOARD
+#in1 =29
+#in2 = 31
+#in3 =33
+#in4 = 35
 #enda = 40
-endb = 37
+#endb = 37
+
+#BCM
+in1 =5
+in2 = 6
+in3 =13
+in4 = 19
+#enda = 21
+endb = 26
 
 def fire():
     GPIO.setup(in1,GPIO.OUT,initial=GPIO.LOW)

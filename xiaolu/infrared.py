@@ -15,13 +15,19 @@ b_scan = 1
 c_scan = 1
 d_scan = 1
 
-#对应4个传感器的输出脚
-a_pin = 32
-b_pin = 36
-c_pin = 38
-d_pin = 40
+#对应4个传感器的输出脚 BOARD
+#a_pin = 32
+#b_pin = 36
+#c_pin = 38
+#d_pin = 40
 
-GPIO.setmode(GPIO.BOARD)
+#BCM
+a_pin = 12
+b_pin = 16
+c_pin = 20
+d_pin = 21
+
+GPIO.setmode(GPIO.BCM)
 GPIO.setup([a_pin,b_pin,c_pin,d_pin],GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
 def edge_change(pin):
