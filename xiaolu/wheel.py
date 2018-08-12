@@ -168,7 +168,6 @@ def standby(_1553b):
             time.sleep(3)
             continue
         else:
-            print("ok-------------")
             fire()
             try:
                 if '0x02_0x01' in _1553b:
@@ -202,7 +201,7 @@ def standby(_1553b):
                     elif data == [1,1,1,1]:
                         action_1111()
                     else:
-                        print("whats happen????")
+                        print("whats happen????%s"% data)
 
                 else:
                     action_1111()
