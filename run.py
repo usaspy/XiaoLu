@@ -29,17 +29,17 @@ if __name__ == "__main__":
         p1 = Process(target=wheel.standby,args=(_1553b,),name='0x01')
         p2 = Process(target=infrared.scan,args=(_1553b,),name='0x02')
         p3 = Process(target=tft_screen.display,args=(_1553b,),name='0x04')
-        p0 = Process(target=view_1553b.view,args=(_1553b,),name='0x04')
+    #    p0 = Process(target=view_1553b.view,args=(_1553b,),name='0x00')
 
         p1.daemon = True
         p2.daemon = True
         p3.daemon = True
-        p0.daemon = True
+     #   p0.daemon = True
 
         p1.start()
         p2.start()
         p3.start()
-        p0.start()
+    #    p0.start()
 
      #   affinity.set_process_affinity_mask(p1.pid,7L)
      #   affinity.set_process_affinity_mask(p2.pid,7L)
@@ -47,7 +47,7 @@ if __name__ == "__main__":
         p1.join()
         p2.join()
         p3.join()
-        p0.join()
+   #     p0.join()
     except Exception as e:
         print(e)
     finally:

@@ -63,6 +63,8 @@ def __1553b_set(_1553b,a_scan, b_scan, c_scan, d_scan):
     data['data'] = [a_scan, b_scan, c_scan, d_scan]
     _1553b['0x02_0x04'] = data
 
+    print(_1553b)
+
 
 #启动红外避障系统，实时刷新环境状态
 #四个监听器，实时报告该方向是否有障碍
