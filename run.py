@@ -31,6 +31,7 @@ if __name__ == "__main__":
         p3 = Process(target=tft_screen.display,args=(_1553b,),name='0x04')
     #    p0 = Process(target=view_1553b.view,args=(_1553b,),name='0x00')
 
+        _1553b['STATUS'] = True
         p1.daemon = True
         p2.daemon = True
         p3.daemon = True
