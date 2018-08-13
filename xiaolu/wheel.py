@@ -170,6 +170,22 @@ def action_1001():
     time.sleep(2)
     __forward()
 
+def action_1011():
+    print('1011')
+    __backaway()
+    time.sleep(0.5)
+    __turn_right()
+    time.sleep(2)
+    __forward()
+
+def action_1010():
+    print('1011')
+    __backaway()
+    time.sleep(1)
+    __turn_left()
+    time.sleep(2)
+    __forward()
+
 def standby(_1553b):
     while True:
         if _1553b.get('STATUS') != True:
@@ -208,6 +224,10 @@ def standby(_1553b):
                         action_0000()
                     elif data == [1,0,0,1]:
                         action_1001()
+                    elif data == [1,0,1,0]:
+                        action_1010()
+                    elif data == [1,0,1,1]:
+                        action_1011()
                     elif data == [1,1,1,1]:
                         action_1111()
                     else:
