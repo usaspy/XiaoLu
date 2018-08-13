@@ -227,16 +227,13 @@ def standby(_1553b):
                     elif data == [1,0,1,0]:
                         action_1010()
                     elif data == [1,0,1,1]:
-                        print("c-------------")
                         action_1011()
                     elif data == [1,1,1,1]:
-                        print("a-------------")
                         action_1111()
                     else:
                         print("whats happen????%s"% data)
 
                 else:
-                    print("b-------------")
                     action_1111()
                 time.sleep(0.5)
             except Exception as e:
