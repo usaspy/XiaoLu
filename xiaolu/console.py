@@ -15,4 +15,4 @@ def webconsole(_1553b):
         _1553b["STATUS"] = action
         return jsonify({'result': "success"})
 
-    app.run(host="192.168.0.9",port=80,debug=False)
+    app.run(host="192.168.1.210",port=80,debug=False)
