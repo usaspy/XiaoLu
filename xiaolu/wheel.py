@@ -188,7 +188,8 @@ def action_1010():
 
 def standby(_1553b):
     while True:
-        if _1553b.get('STATUS') != True:
+        if _1553b.get('STATUS') != 'runing':
+            print(_1553b.get('STATUS'))
             time.sleep(3)
             continue
         else:

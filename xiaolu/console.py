@@ -11,7 +11,7 @@ def webconsole(_1553b):
 
     @app.route('/status',methods=['GET'])
     def set_status():
-        action = request.values.get("set")
+        action = request.values.get("action")
         _1553b["STATUS"] = action
         return jsonify({'result': "success"})
 
