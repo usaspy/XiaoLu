@@ -2,7 +2,7 @@
 # coding=utf-8
 from flask import Flask,render_template,request,jsonify
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='../static',template_folder='../templates')
 
 def webconsole(_1553b):
     @app.route('/console',methods=['GET'])
