@@ -12,6 +12,9 @@ def webconsole(_1553b):
     @app.route('/status',methods=['GET'])
     def set_status():
         action = request.values.get("action")
+        # runing:启动边扫、吸尘、行走
+        # pause:边扫、吸尘继续，行走暂停
+        # stop: 边扫、吸尘、行走全部停止
         _1553b["STATUS"] = action
         return jsonify({'result': "success"})
 

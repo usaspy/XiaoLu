@@ -27,6 +27,17 @@ $(document).ready(function(){
                         success: function(data){},
                         error: function(data){}
                 });
+        })
+        $("#pause").click(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.1.210/status",
+                        data: {"action": "pause"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
         });
 });
 </script>
@@ -36,7 +47,7 @@ $(document).ready(function(){
   <table>
   <tr>
 	<td><button id="runing" name="runing" style="height:150px;width:300px;border-width: 5px;">开始打扫</button></td>
-	<td></td>
+	<td><button id="pause" name="pause" style="height:150px;width:300px;border-width: 5px;">暂停</button></td>
 	<td><button id="stop" name="stop" style="height:150px;width:300px;border-width: 5px;">停止</button></td>
   </tr>
   </table>

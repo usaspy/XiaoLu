@@ -233,7 +233,6 @@ def standby(_1553b):
                         action_1111()
                     else:
                         print("whats happen????%s"% data)
-
                 else:
                     action_1111()
                 time.sleep(0.5)
