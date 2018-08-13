@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="test/html; charset=UTF-8" />
+    <title>AutoCar小车</title>
+    <script src="{{url_for('static',filename='jquery-3.3.1.js')}}"  language="javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+        $("#forward").mousedown(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "forward"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+        $("#stop").mousedown(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "stop"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+        $("#back").mousedown(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "backaway"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+        $("#front_left_turn").mousedown(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "turn_left"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+        $("#front_right_turn").mousedown(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "turn_right"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+
+
+
+        $("#forward").mouseup(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "stop"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+        $("#front_left_turn").mouseup(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "stop"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+        $("#front_right_turn").mouseup(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "stop"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+        $("#back").mouseup(function(){
+                $.ajax({
+                        type: "GET",
+                        url: "http://192.168.0.9/wheel",
+                        data: {"action": "stop"},
+                        dataType: "json",
+                        cache: "false",
+                        success: function(data){},
+                        error: function(data){}
+                });
+        });
+
+});
+</script>
+</head>
+<body>
+
+  <table>
+  <tr>
+	<td><button id="forward" name="forward" style="height:150px;width:300px;border-width: 5px;">前进</button></td>
+	<td></td>
+	<td><button id="front_left_turn" name="front_left_turn" style="height:150px;width:300px;border-width: 5px;">左拐</button></td>
+  </tr>
+  <tr>
+	<td></td>
+	<td><button id="stop" name="stop" style="height:150px;width:150px;border-width: 5px;background:#ff0000">停止</button></td>
+	<td></td>
+  </tr>
+  <tr>
+	<td><button id="back" name="back" style="height:150px;width:300px;border-width: 5px;">后退</button></td>
+	<td></td>
+	<td><button id="front_right_turn" name="front_right_turn" style="height:150px;width:300px;border-width: 5px;">右拐</button></td>
+  </tr>
+  </table>
+
+
+
+</body>
+</html>
