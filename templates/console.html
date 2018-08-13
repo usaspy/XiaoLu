@@ -9,7 +9,7 @@ $(document).ready(function(){
         $("#runing").click(function(){
                 $.ajax({
                         type: "GET",
-                        url: "http://192.168.1.210/status",
+                        url: "http://192.168.0.9/status",
                         data: {"action": "runing"},
                         dataType: "json",
                         cache: "false",
@@ -20,7 +20,7 @@ $(document).ready(function(){
         $("#stop").click(function(){
                 $.ajax({
                         type: "GET",
-                        url: "http://192.168.1.210/status",
+                        url: "http://192.168.0.9/status",
                         data: {"action": "stop"},
                         dataType: "json",
                         cache: "false",
@@ -31,7 +31,7 @@ $(document).ready(function(){
         $("#pause").click(function(){
                 $.ajax({
                         type: "GET",
-                        url: "http://192.168.1.210/status",
+                        url: "http://192.168.0.9/status",
                         data: {"action": "pause"},
                         dataType: "json",
                         cache: "false",
