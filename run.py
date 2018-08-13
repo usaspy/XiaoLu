@@ -31,7 +31,7 @@ if __name__ == "__main__":
         p2 = Process(target=infrared.scan,args=(_1553b,),name='0x02')
         p3 = Process(target=tft_screen.display,args=(_1553b,),name='0x04')
     #    p0 = Process(target=view_1553b.view,args=(_1553b,),name='0x00')
-        p4 = Process(target=console.webconsole.view,args=(_1553b,),name='0x08')
+        p4 = Process(target=console.webconsole,args=(_1553b,),name='0x08')
 
         p1.daemon = True
         p2.daemon = True
