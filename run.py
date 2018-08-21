@@ -23,6 +23,7 @@ from xiaolu import infrared
 from xiaolu import view_1553b
 from xiaolu import tft_screen
 from xiaolu import console
+from xiaolu import PM25
 
 # noinspection PyInterpreter
 if __name__ == "__main__":
@@ -32,17 +33,20 @@ if __name__ == "__main__":
         p3 = Process(target=tft_screen.display,args=(_1553b,),name='0x04')
     #    p0 = Process(target=view_1553b.view,args=(_1553b,),name='0x00')
         p4 = Process(target=console.webconsole,args=(_1553b,),name='0x08')
+        p5 = Process(target=PM25.pm25_detect,args=(_1553b,),name='0x03')
 
         p1.daemon = True
         p2.daemon = True
         p3.daemon = True
         p4.daemon = True
+        p5.daemon = True
      #   p0.daemon = True
 
         p1.start()
         p2.start()
         p3.start()
         p4.start()
+        p5.start()
     #    p0.start()
 
      #   affinity.set_process_affinity_mask(p1.pid,7L)
@@ -52,6 +56,7 @@ if __name__ == "__main__":
         p2.join()
         p3.join()
         p4.join()
+        p5.join()
    #     p0.join()
     except Exception as e:
         print(e)
