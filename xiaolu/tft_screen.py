@@ -75,6 +75,6 @@ def display(_1553b):
                 __draw_rotated_text(disp.buffer, "WorkTime >> " + str(sec) + " sec", (150, 105), 90, font, fill=(255, 255, 0))
             if '0x03_0x04' in _1553b and _1553b['0x03_0x04'].get('data') is not None:
                 ls = _1553b['0x03_0x04'].get('data')
-                __draw_rotated_text(disp.buffer, "\r\n".join(ls), (60, 55), 90, font, fill=(0, 255, 0))
+                __draw_rotated_text(disp.buffer, "\r\n".join(ls), (120, 55), 90, font, fill=(0, 255, 0))
         disp.display()
         time.sleep(1)

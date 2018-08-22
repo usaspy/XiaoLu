@@ -31,9 +31,9 @@ def webconsole(_1553b):
 #BCM
 power = 22
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(power,GPIO.OUT,initial=GPIO.LOW)
+GPIO.setup(power,GPIO.OUT,initial=GPIO.HIGH)
 def __power_on():
-    GPIO.output(power,GPIO.HIGH)
+    GPIO.output(power,GPIO.LOW)
 
 def __power_off():
-    GPIO.output(power,GPIO.LOW)
+    GPIO.output(power,GPIO.HIGH)
