@@ -24,7 +24,7 @@ def pm25_detect(_1553b):
 def __1553b_set(_1553b,CURR_DUTY):
     global  ls
     del ls[0]
-    ls.append(CURR_DUTY)
+    ls.append(str(CURR_DUTY))
 
     data = {}
     data['send'] = 0x03

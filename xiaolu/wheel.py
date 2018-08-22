@@ -243,4 +243,5 @@ def standby(_1553b):
                         action_1111()
             except Exception as e:
                 continue
-        time.sleep(0.5)
+            finally:
+                time.sleep(0.5)
