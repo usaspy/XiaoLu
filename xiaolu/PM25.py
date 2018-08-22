@@ -12,7 +12,7 @@ import Adafruit_ADS1x15
 
 adc = Adafruit_ADS1x15.ADS1115()
 GAIN = 1
-ls = [0] * 7
+ls = ['0'] * 7
 
 def pm25_detect(_1553b):
     while True:
