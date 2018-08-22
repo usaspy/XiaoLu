@@ -186,7 +186,12 @@ def action_1010():
     time.sleep(2)
     __forward()
 
+def action_rotate():
+    __turn_left()
+
 def standby(_1553b):
+    sensor1 = [1,1,1,1]
+    sensor2 = 0
     while True:
         print(_1553b.get('STATUS'))
         if _1553b.get('STATUS') != 'runing':
@@ -196,45 +201,46 @@ def standby(_1553b):
             fire()
             try:
                 if '0x02_0x01' in _1553b:
-                    data = _1553b['0x02_0x01'].get('data')
-                    if data == [1,1,1,0]:
-                        action_1110()
-                    elif data == [1,1,0,0]:
-                        action_1100()
-                    elif data == [1,0,0,0]:
-                        action_1000()
-                    elif data == [0,0,0,1]:
-                        action_0001()
-                    elif data == [0,0,1,1]:
-                        action_0011()
-                    elif data == [0,1,1,1]:
-                        action_0111()
-                    elif data == [0,0,1,0]:
-                        action_0010()
-                    elif data == [0,1,1,0]:
-                        action_0110()
-                    elif data == [0,1,0,1]:
-                        action_0101()
-                    elif data == [1,1,0,1]:
-                        action_1101()
-                    elif data == [0,1,1,0]:
-                        action_0110()
-                    elif data == [0,1,0,0]:
-                        action_0100()
-                    elif data == [0,0,0,0]:
-                        action_0000()
-                    elif data == [1,0,0,1]:
-                        action_1001()
-                    elif data == [1,0,1,0]:
-                        action_1010()
-                    elif data == [1,0,1,1]:
-                        action_1011()
-                    elif data == [1,1,1,1]:
-                        action_1111()
+                    sensor1 = _1553b['0x02_0x01'].get('data')
+                if '0x03_0x01' in _1553b:
+                    sensor2 = _1553b['0x03_0x01'].get('data')
+                if sensor1 == [1,1,1,0]:
+                    action_1110()
+                elif sensor1 == [1,1,0,0]:
+                    action_1100()
+                elif sensor1 == [1,0,0,0]:
+                    action_1000()
+                elif sensor1 == [0,0,0,1]:
+                    action_0001()
+                elif sensor1 == [0,0,1,1]:
+                    action_0011()
+                elif sensor1 == [0,1,1,1]:
+                    action_0111()
+                elif sensor1 == [0,0,1,0]:
+                    action_0010()
+                elif sensor1 == [0,1,1,0]:
+                    action_0110()
+                elif sensor1 == [0,1,0,1]:
+                    action_0101()
+                elif sensor1 == [1,1,0,1]:
+                    action_1101()
+                elif sensor1 == [0,1,1,0]:
+                    action_0110()
+                elif sensor1 == [0,1,0,0]:
+                    action_0100()
+                elif sensor1 == [0,0,0,0]:
+                    action_0000()
+                elif sensor1 == [1,0,0,1]:
+                    action_1001()
+                elif sensor1 == [1,0,1,0]:
+                    action_1010()
+                elif sensor1 == [1,0,1,1]:
+                    action_1011()
+                elif sensor1 == [1,1,1,1]:
+                    if sensor2 > 1000:
+                        action_rotate()
                     else:
-                        print("whats happen????%s"% data)
-                else:
-                    action_1111()
+                        action_1111()
                 time.sleep(0.5)
             except Exception as e:
                 continue

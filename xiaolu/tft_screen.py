@@ -71,8 +71,10 @@ def display(_1553b):
                 __draw_rotated_text(disp.buffer, 'C:' + str(_1553b['0x02_0x04'].get('data')[2]), (100, 115), 90, font, fill=(255, 255, 255))
                 __draw_rotated_text(disp.buffer, 'D:' + str(_1553b['0x02_0x04'].get('data')[3]), (100, 75), 90, font, fill=(255, 255, 255))
             if '0x02_0x04' in _1553b and _1553b['0x02_0x04'].get('data') is not None:
-                __draw_rotated_text(disp.buffer, 'PM2.5 >> N/A', (140, 105), 90, font, fill=(255, 255, 0))
                 __draw_rotated_text(disp.buffer, 'Status >> Runing', (160, 105), 90, font, fill=(255, 255, 0))
-                __draw_rotated_text(disp.buffer, "Runtime >> " + str(sec) + " sec", (150, 105), 90, font, fill=(255, 255, 0))
+                __draw_rotated_text(disp.buffer, "WorkTime >> " + str(sec) + " sec", (150, 105), 90, font, fill=(255, 255, 0))
+            if '0x03_0x04' in _1553b and _1553b['0x03_0x04'].get('data') is not None:
+                ls = _1553b['0x03_0x04'].get('data')
+                __draw_rotated_text(disp.buffer, "\r\n".join(ls), (60, 55), 90, font, fill=(0, 255, 0))
         disp.display()
         time.sleep(1)

@@ -1,6 +1,5 @@
 import time
 
-
-a = {}
-a[time.time()] = 'adf'
-print(a)
+s = ['1','2','3','4']
+b = [1,2]
+print("\r\n".join(s))
