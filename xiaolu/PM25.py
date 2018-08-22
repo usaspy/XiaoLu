@@ -41,5 +41,5 @@ def __1553b_set(_1553b,CURR_DUTY):
     data['mode'] = 1
     data['priority'] = 1
     data['timestamp'] = time.time()
-    data['data'] = str(CURR_DUTY)
+    data['data'] = CURR_DUTY
     _1553b['0x03_0x01'] = data
