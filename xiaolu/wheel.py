@@ -241,6 +241,6 @@ def standby(_1553b):
                         action_rotate()
                     else:
                         action_1111()
-                time.sleep(0.5)
             except Exception as e:
                 continue
+        time.sleep(0.5)
