@@ -4,6 +4,7 @@
 红外避障系统
 1.启动扫描，当探测到障碍时，将X_scan设置为0,没有障碍时设置为1
 2. a,b,c,d分别代表从左向右数第一、二、三、四个探头
+3. 增加两组四个碰撞开关，当检测到碰撞后，立即转向
 '''
 
 import RPi.GPIO as GPIO
@@ -38,7 +39,7 @@ GPIO.setup([a_pin,b_pin,c_pin,d_pin],GPIO.IN,pull_up_down=GPIO.PUD_UP)
 GPIO.setup([lswitch_pin,rswitch_pin],GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
 def edge_change(pin):
-    global  a_scan,b_scan,c_scan,d_scan,lswitch,rswitch
+    global  a_scan, b_scan, c_scan, d_scan, lswitch, rswitch
     global tmp
     if pin == a_pin:
         a_scan = GPIO.input(pin)
@@ -53,17 +54,17 @@ def edge_change(pin):
     if pin == rswitch_pin:
         rswitch = GPIO.input(pin)
 
-    __1553b_set(tmp,a_scan, b_scan, c_scan, d_scan,lswitch,rswitch)
+    __1553b_set(tmp,a_scan, b_scan, c_scan, d_scan, lswitch, rswitch)
 
 #往1553B数据总线发送数据
-def __1553b_set(_1553b,a_scan, b_scan, c_scan, d_scan,lswitch,rswitch):
+def __1553b_set(_1553b, a_scan, b_scan, c_scan, d_scan, lswitch, rswitch):
     data = {}
     data['send'] = 0x02
     data['to'] = 0x01
     data['mode'] = 1
     data['priority'] = 1
     data['timestamp'] = time.time()
-    data['data'] = [a_scan, b_scan, c_scan, d_scan,lswitch,rswitch]
+    data['data'] = [a_scan, b_scan, c_scan, d_scan, lswitch, rswitch]
     _1553b['0x02_0x01'] = data
 
     data['send'] = 0x02
@@ -71,7 +72,7 @@ def __1553b_set(_1553b,a_scan, b_scan, c_scan, d_scan,lswitch,rswitch):
     data['mode'] = 1
     data['priority'] = 1
     data['timestamp'] = time.time()
-    data['data'] = [a_scan, b_scan, c_scan, d_scan,lswitch,rswitch]
+    data['data'] = [a_scan, b_scan, c_scan, d_scan, lswitch, rswitch]
     _1553b['0x02_0x04'] = data
 
     print(_1553b)
@@ -82,19 +83,15 @@ def __1553b_set(_1553b,a_scan, b_scan, c_scan, d_scan,lswitch,rswitch):
 def scan(_1553b):
     global tmp
     tmp = _1553b # 对象是传引用，基本类型是传值，此处是传引用
-    GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(b_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
+    GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change)
+    GPIO.add_event_detect(b_pin,GPIO.BOTH,callback=edge_change)
+    GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change)
+    GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change)
 
-    GPIO.add_event_detect(lswitch_pin,GPIO.FALLING,callback=edge_change,bouncetime=20)
-    GPIO.add_event_detect(rswitch_pin,GPIO.FALLING,callback=edge_change,bouncetime=20)
+    GPIO.add_event_detect(lswitch_pin,GPIO.FALLING,callback=edge_change)
+    GPIO.add_event_detect(rswitch_pin,GPIO.FALLING,callback=edge_change)
     while True:
         time.sleep(2)
 
 def stopWork():
-    GPIO.cleanup([a_pin,b_pin,c_pin,d_pin])
-
-
-if __name__ == '__main__':
-    scan('zhang')
+    GPIO.cleanup([a_pin,b_pin,c_pin,d_pin,lswitch_pin,rswitch_pin])
