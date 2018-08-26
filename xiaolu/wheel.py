@@ -96,24 +96,32 @@ def action_1110():
 
 def action_1100():
     print('1100')
+    __backaway()
+    time.sleep(0.5)
     __turn_left()
     time.sleep(1)
     __forward()
 
 def action_1000():
     print('1000')
+    __backaway()
+    time.sleep(0.5)
     __turn_left()
-    time.sleep(1.5)
+    time.sleep(2)
     __forward()
 
 def action_0001():
     print('0001')
+    __backaway()
+    time.sleep(0.5)
     __turn_right()
-    time.sleep(1.5)
+    time.sleep(2)
     __forward()
 
 def action_0011():
     print('0011')
+    __backaway()
+    time.sleep(0.5)
     __turn_right()
     time.sleep(1)
     __forward()
@@ -126,20 +134,26 @@ def action_0111():
 
 def action_0010():
     print('0010')
+    __backaway()
+    time.sleep(0.5)
     __turn_right()
-    time.sleep(2)
+    time.sleep(3)
     __forward()
 
 def action_0110():
     print('0110')
+    __backaway()
+    time.sleep(0.5)
     __turn_right()
-    time.sleep(2)
+    time.sleep(3)
     __forward()
 
 def action_0101():
     print('0101')
+    __backaway()
+    time.sleep(0.5)
     __turn_right()
-    time.sleep(1.5)
+    time.sleep(2)
     __forward()
 
 def action_1101():
@@ -150,8 +164,10 @@ def action_1101():
 
 def action_0100():
     print('0100')
+    __backaway()
+    time.sleep(0.5)
     __turn_left()
-    time.sleep(2)
+    time.sleep(3)
     __forward()
 
 def action_0000():
@@ -159,7 +175,7 @@ def action_0000():
     __backaway()
     time.sleep(0.5)
     __turn_left()
-    time.sleep(2)
+    time.sleep(3)
     __forward()
 
 def action_1001():
@@ -189,6 +205,27 @@ def action_1010():
 def action_rotate():
     __turn_left()
 
+def action_sw_10():
+    __backaway()
+    time.sleep(1)
+    __turn_left()
+    time.sleep(1.5)
+    __forward()
+
+def action_sw_02():
+    __backaway()
+    time.sleep(1)
+    __turn_right()
+    time.sleep(1.5)
+    __forward()
+
+def action_sw_00():
+    __backaway()
+    time.sleep(1)
+    __turn_right()
+    time.sleep(4)
+    __forward()
+
 def standby(_1553b):
     sensor1 = [1,1,1,1,1,1]
     sensor2 = 0
@@ -204,39 +241,47 @@ def standby(_1553b):
                     sensor1 = _1553b['0x02_0x01'].get('data')
                 if '0x03_0x01' in _1553b:
                     sensor2 = _1553b['0x03_0x01'].get('data')
-                if sensor1 == [1,1,1,0]:
+
+                if sensor1[4:6] !=[1,1]:
+                    if sensor1[4:6] == [1,0]:
+                        action_sw_10()
+                    elif sensor1[4:6] == [0,1]:
+                        action_sw_02()
+                    elif sensor1[4:6] == [0,0]:
+                        action_sw_00()
+                elif sensor1[0:4] == [1,1,1,0]:
                     action_1110()
-                elif sensor1 == [1,1,0,0]:
+                elif sensor1[0:4] == [1,1,0,0]:
                     action_1100()
-                elif sensor1 == [1,0,0,0]:
+                elif sensor1[0:4] == [1,0,0,0]:
                     action_1000()
-                elif sensor1 == [0,0,0,1]:
+                elif sensor1[0:4] == [0,0,0,1]:
                     action_0001()
-                elif sensor1 == [0,0,1,1]:
+                elif sensor1[0:4] == [0,0,1,1]:
                     action_0011()
-                elif sensor1 == [0,1,1,1]:
+                elif sensor1[0:4] == [0,1,1,1]:
                     action_0111()
-                elif sensor1 == [0,0,1,0]:
+                elif sensor1[0:4] == [0,0,1,0]:
                     action_0010()
-                elif sensor1 == [0,1,1,0]:
+                elif sensor1[0:4] == [0,1,1,0]:
                     action_0110()
-                elif sensor1 == [0,1,0,1]:
+                elif sensor1[0:4] == [0,1,0,1]:
                     action_0101()
-                elif sensor1 == [1,1,0,1]:
+                elif sensor1[0:4] == [1,1,0,1]:
                     action_1101()
-                elif sensor1 == [0,1,1,0]:
+                elif sensor1[0:4] == [0,1,1,0]:
                     action_0110()
-                elif sensor1 == [0,1,0,0]:
+                elif sensor1[0:4] == [0,1,0,0]:
                     action_0100()
-                elif sensor1 == [0,0,0,0]:
+                elif sensor1[0:4] == [0,0,0,0]:
                     action_0000()
-                elif sensor1 == [1,0,0,1]:
+                elif sensor1[0:4] == [1,0,0,1]:
                     action_1001()
-                elif sensor1 == [1,0,1,0]:
+                elif sensor1[0:4] == [1,0,1,0]:
                     action_1010()
-                elif sensor1 == [1,0,1,1]:
+                elif sensor1[0:4] == [1,0,1,1]:
                     action_1011()
-                elif sensor1 == [1,1,1,1]:
+                elif sensor1[0:4] == [1,1,1,1]:
                     if sensor2 > 1000:
                         action_rotate()
                     else:
