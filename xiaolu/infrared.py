@@ -15,6 +15,9 @@ b_scan = 1
 c_scan = 1
 d_scan = 1
 
+left_switch = 1
+right_switch = 1
+
 #对应4个传感器的输出脚 BOARD
 #a_pin = 32
 #b_pin = 36
@@ -27,10 +30,30 @@ b_pin = 16
 c_pin = 20
 d_pin = 21
 
+left_switch_pin = 24
+right_switch_pin =23
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup([a_pin,b_pin,c_pin,d_pin],GPIO.IN,pull_up_down=GPIO.PUD_UP)
+GPIO.setup([left_switch_pin,right_switch_pin],GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
-def edge_change(pin):
+def edge_change_rising(pin):
+    print("rising %s %s "% (pin , GPIO.input(pin)))
+    global  a_scan,b_scan,c_scan,d_scan
+    global tmp
+    if pin == a_pin:
+        a_scan = GPIO.input(pin)
+    if pin == b_pin:
+        b_scan = GPIO.input(pin)
+    if pin == c_pin:
+        c_scan = GPIO.input(pin)
+    if pin == d_pin:
+        d_scan = GPIO.input(pin)
+
+    __1553b_set(tmp,a_scan, b_scan, c_scan, d_scan)
+
+def edge_change_falling(pin):
+    print("falling %s %s "% (pin , GPIO.input(pin)))
     global  a_scan,b_scan,c_scan,d_scan
     global tmp
     if pin == a_pin:
@@ -71,10 +94,15 @@ def __1553b_set(_1553b,a_scan, b_scan, c_scan, d_scan):
 def scan(_1553b):
     global tmp
     tmp = _1553b # 对象是传引用，基本类型是传值，此处是传引用
-    GPIO.add_event_detect(a_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(b_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
-    GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
+    GPIO.add_event_detect(a_pin,GPIO.RISING,callback=edge_change_rising,bouncetime=100)
+    GPIO.add_event_detect(b_pin,GPIO.RISING,callback=edge_change_rising,bouncetime=100)
+    GPIO.add_event_detect(c_pin,GPIO.RISING,callback=edge_change_rising,bouncetime=100)
+    GPIO.add_event_detect(d_pin,GPIO.RISING,callback=edge_change_rising,bouncetime=100)
+
+    GPIO.add_event_detect(a_pin,GPIO.FALLING,callback=edge_change_falling,bouncetime=100)
+    GPIO.add_event_detect(b_pin,GPIO.FALLING,callback=edge_change_falling,bouncetime=100)
+    GPIO.add_event_detect(c_pin,GPIO.FALLING,callback=edge_change_falling,bouncetime=100)
+    GPIO.add_event_detect(d_pin,GPIO.FALLING,callback=edge_change_falling,bouncetime=100)
     while True:
         time.sleep(2)
 
