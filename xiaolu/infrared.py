@@ -57,6 +57,7 @@ def edge_change(pin):
     __1553b_set(tmp,a_scan, b_scan, c_scan, d_scan, lswitch, rswitch)
 
 #往1553B数据总线发送数据
+#数据结构=[1,1,1,1,1,1]
 def __1553b_set(_1553b, a_scan, b_scan, c_scan, d_scan, lswitch, rswitch):
     data = {}
     data['send'] = 0x02
@@ -80,6 +81,7 @@ def __1553b_set(_1553b, a_scan, b_scan, c_scan, d_scan, lswitch, rswitch):
 
 #启动红外避障系统，实时刷新环境状态
 #四个监听器，实时报告该方向是否有障碍
+#增加两个碰撞开关
 def scan(_1553b):
     global tmp
     tmp = _1553b # 对象是传引用，基本类型是传值，此处是传引用
