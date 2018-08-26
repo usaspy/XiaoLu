@@ -205,7 +205,7 @@ def standby(_1553b):
                 if '0x03_0x01' in _1553b:
                     sensor2 = _1553b['0x03_0x01'].get('data')
 
-                print(sensor1)
+                print("------------------"+sensor1)
                 if sensor1 == [1,1,1,0]:
                     action_1110()
                 elif sensor1 == [1,1,0,0]:
