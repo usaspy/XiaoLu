@@ -87,8 +87,8 @@ def scan(_1553b):
     GPIO.add_event_detect(c_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
     GPIO.add_event_detect(d_pin,GPIO.BOTH,callback=edge_change,bouncetime=100)
 
-    GPIO.add_event_detect(lswitch_pin,GPIO.BOTH,callback=edge_change,bouncetime=20)
-    GPIO.add_event_detect(rswitch_pin,GPIO.BOTH,callback=edge_change,bouncetime=20)
+    GPIO.add_event_detect(lswitch_pin,GPIO.FALLING,callback=edge_change,bouncetime=20)
+    GPIO.add_event_detect(rswitch_pin,GPIO.FALLING,callback=edge_change,bouncetime=20)
     while True:
         time.sleep(2)
 
