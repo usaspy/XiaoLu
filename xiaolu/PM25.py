@@ -9,7 +9,7 @@
 '''
 import time
 import Adafruit_ADS1x15
-
+#https://www.colabug.com/3362498.html i2c参考资料
 adc = Adafruit_ADS1x15.ADS1115()
 GAIN = 1
 ls = ['0'] * 7
