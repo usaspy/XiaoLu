@@ -49,8 +49,8 @@ if __name__ == "__main__":
         p5.start()
     #    p0.start()
 
-        affinity.set_process_affinity_mask(p1.pid,7L)
-        affinity.set_process_affinity_mask(p2.pid,7L)
+       # affinity.set_process_affinity_mask(p1.pid,7L)
+       # affinity.set_process_affinity_mask(p2.pid,7L)
 
         p1.join()
         p2.join()
